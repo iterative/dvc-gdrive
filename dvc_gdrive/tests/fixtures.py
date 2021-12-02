@@ -6,9 +6,6 @@ from .cloud import GDrive
 
 @pytest.fixture
 def make_gdrive(make_tmp_dir):
-    if not GDrive.should_test():
-        pytest.skip("no gdrive")
-
     def _make_gdrive():
         # NOTE: temporary workaround
         tmp_dir = make_tmp_dir("gdrive", dvc=True)

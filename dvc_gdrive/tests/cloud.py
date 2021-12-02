@@ -60,10 +60,6 @@ def _gdrive_retry(func):
 
 
 class GDrive(Cloud, GDriveURLInfo):
-    @staticmethod
-    def should_test():
-        return bool(os.getenv(GDriveFileSystem.GDRIVE_CREDENTIALS_DATA))
-
     @property
     def config(self):
         tmp_path = tmp_fname()
