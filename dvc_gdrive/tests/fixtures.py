@@ -15,7 +15,7 @@ def make_gdrive(make_tmp_dir):
             gdrive_credentials_tmp_dir=tmp_dir.dvc.tmp_dir, **ret.config
         )
         fs.fs._gdrive_create_dir(  # noqa, pylint: disable=protected-access
-            "root", fs.url
+            fs._bucket, fs._path  # noqa, pylint: disable=protected-access
         )
         return ret
 

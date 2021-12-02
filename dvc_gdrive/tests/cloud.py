@@ -11,7 +11,7 @@ from dvc.testing.path_info import CloudURLInfo
 from dvc.utils import tmp_fname
 from funcy import cached_property, retry
 
-TEST_GDRIVE_REPO_BUCKET = "root"
+TEST_GDRIVE_REPO_BUCKET = "1lvz1BPnvWO0xvQlObDMobpZZ5jRQMXWh"
 
 
 class GDriveURLInfo(CloudURLInfo):
