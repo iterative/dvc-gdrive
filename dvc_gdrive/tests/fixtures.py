@@ -17,7 +17,7 @@ def make_gdrive(make_tmp_dir):
         fs.fs._gdrive_create_dir(  # noqa, pylint: disable=protected-access
             "root", fs.url
         )
-        yield ret
+        return ret
 
     return _make_gdrive
 
