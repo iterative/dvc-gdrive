@@ -5,7 +5,7 @@ from functools import partialmethod
 from urllib.parse import urlparse
 
 import pytest
-from dvc.fs.gdrive import GDriveFileSystem
+from dvc.fs import GDriveFileSystem
 from dvc.testing.cloud import Cloud
 from dvc.testing.path_info import CloudURLInfo
 from dvc.utils import tmp_fname

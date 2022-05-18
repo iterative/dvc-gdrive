@@ -1,5 +1,5 @@
 import pytest
-from dvc.fs.gdrive import GDriveFileSystem
+from dvc.fs import GDriveFileSystem
 
 from .cloud import GDrive
 
