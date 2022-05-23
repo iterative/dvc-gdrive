@@ -5,10 +5,10 @@ from functools import partialmethod
 from urllib.parse import urlparse
 
 import pytest
+import shortuuid
 from dvc.fs import GDriveFileSystem
 from dvc.testing.cloud import Cloud
 from dvc.testing.path_info import CloudURLInfo
-from dvc.utils import tmp_fname
 from funcy import cached_property, retry
 
 TEST_GDRIVE_REPO_BUCKET = "1lvz1BPnvWO0xvQlObDMobpZZ5jRQMXWh"
@@ -62,7 +62,7 @@ def _gdrive_retry(func):
 class GDrive(Cloud, GDriveURLInfo):
     @property
     def config(self):
-        tmp_path = tmp_fname()
+        tmp_path = "." + shortuuid.uuid() + ".tmp"
         with open(tmp_path, "w", encoding="utf-8") as stream:
             raw_credentials = os.getenv(
                 GDriveFileSystem.GDRIVE_CREDENTIALS_DATA
