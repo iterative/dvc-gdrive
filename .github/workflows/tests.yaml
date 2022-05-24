@@ -87,7 +87,7 @@ jobs:
       timeout-minutes: 40
       env:
         GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-      run: pytest -n=auto --cov-report=xml --cov-report=term
+      run: pytest -v -n=auto --cov-report=xml --cov-report=term
     - name: upload coverage report
       uses: codecov/codecov-action@v2.1.0
       with:
