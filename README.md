@@ -1,2 +1,3 @@
 # dvc-gdrive
-gdrive plugin for dvc
+
+GDrive plugin for DVC
