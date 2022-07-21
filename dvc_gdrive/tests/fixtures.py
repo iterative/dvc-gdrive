@@ -5,18 +5,13 @@ from .cloud import GDrive
 
 
 @pytest.fixture
-def make_gdrive(make_tmp_dir):
+def make_gdrive():
     def _make_gdrive():
         from urllib.parse import urlparse
 
-        # NOTE: temporary workaround
-        tmp_dir = make_tmp_dir("gdrive", dvc=True)
-
         url = GDrive.get_url()
         ret = GDrive(url)
-        fs = GDriveFileSystem(
-            gdrive_credentials_tmp_dir=tmp_dir.dvc.tmp_dir, **ret.config
-        )
+        fs = GDriveFileSystem(**ret.config)
 
         parsed = urlparse(url)
         bucket = parsed.hostname

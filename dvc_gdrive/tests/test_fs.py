@@ -14,20 +14,16 @@ class TestRemoteGDrive:
         "gdrive_client_secret": "secret",
     }
 
-    def test_init(self, dvc):
-        fs = GDriveFileSystem(
-            gdrive_credentials_tmp_dir=dvc.tmp_dir, **self.CONFIG
-        )
+    def test_init(self):
+        fs = GDriveFileSystem(**self.CONFIG)
         assert fs.url == self.CONFIG["url"]
 
-    def test_drive(self, dvc, monkeypatch):
+    def test_drive(self, monkeypatch):
         monkeypatch.setenv(
             GDriveFileSystem.GDRIVE_CREDENTIALS_DATA,
             USER_CREDS_TOKEN_REFRESH_ERROR,
         )
-        fs = GDriveFileSystem(
-            gdrive_credentials_tmp_dir=dvc.tmp_dir, **self.CONFIG
-        )
+        fs = GDriveFileSystem(**self.CONFIG)
         with pytest.raises(GDriveAuthError):
             assert fs.fs
 
@@ -35,16 +31,10 @@ class TestRemoteGDrive:
             GDriveFileSystem.GDRIVE_CREDENTIALS_DATA,
             USER_CREDS_MISSED_KEY_ERROR,
         )
-        fs = GDriveFileSystem(
-            gdrive_credentials_tmp_dir=dvc.tmp_dir, **self.CONFIG
-        )
+        fs = GDriveFileSystem(**self.CONFIG)
         with pytest.raises(GDriveAuthError):
             assert fs.fs
 
-    def test_service_account_using_env_var(self, dvc, monkeypatch):
+    def test_service_account_using_env_var(self, monkeypatch):
         monkeypatch.setenv(GDriveFileSystem.GDRIVE_CREDENTIALS_DATA, "foo")
-        GDriveFileSystem(
-            gdrive_credentials_tmp_dir=dvc.tmp_dir,
-            gdrive_use_service_account=True,
-            **self.CONFIG
-        )
+        GDriveFileSystem(gdrive_use_service_account=True, **self.CONFIG)
