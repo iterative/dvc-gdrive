@@ -73,7 +73,7 @@ class GDrive(Cloud, GDriveURLInfo):
 
     @staticmethod
     def _get_storagepath():
-        return f"root/dvc_test/{str(uuid.uuid4())}"
+        return f"root/dvc-test/{str(uuid.uuid4())}"
 
     @staticmethod
     def get_url():
