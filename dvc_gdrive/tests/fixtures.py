@@ -21,7 +21,7 @@ def make_gdrive(make_tmp_dir):
         parsed = urlparse(url)
         bucket = parsed.hostname
         path = parsed.path.lstrip("/")
-        
+
         fs.fs._gdrive_create_dir(  # noqa, pylint: disable=protected-access
             bucket, path  # noqa, pylint: disable=protected-access
         )
