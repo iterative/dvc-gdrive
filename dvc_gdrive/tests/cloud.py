@@ -10,8 +10,6 @@ from dvc.testing.cloud import Cloud
 from dvc.testing.path_info import CloudURLInfo
 from funcy import cached_property, retry
 
-TEST_GDRIVE_REPO_BUCKET = "1lvz1BPnvWO0xvQlObDMobpZZ5jRQMXWh"
-
 
 class GDriveURLInfo(CloudURLInfo):
     def __init__(self, url):
@@ -59,14 +57,13 @@ def _gdrive_retry(func):
 
 
 class GDrive(Cloud, GDriveURLInfo):
+    @cached_property
+    def _creds(self):
+        return os.environ[GDriveFileSystem.GDRIVE_CREDENTIALS_DATA]
+
     @property
     def config(self):
-        raw_credentials = os.getenv(GDriveFileSystem.GDRIVE_CREDENTIALS_DATA)
-        try:
-            credentials = json.loads(raw_credentials)
-        except ValueError:
-            credentials = {}
-
+        credentials = json.loads(self._creds)
         use_service_account = credentials.get("type") == "service_account"
 
         return {
@@ -76,7 +73,7 @@ class GDrive(Cloud, GDriveURLInfo):
 
     @staticmethod
     def _get_storagepath():
-        return TEST_GDRIVE_REPO_BUCKET + "/" + str(uuid.uuid4())
+        return f"root/dvc_test/{str(uuid.uuid4())}"
 
     @staticmethod
     def get_url():
@@ -92,7 +89,7 @@ class GDrive(Cloud, GDriveURLInfo):
 
         return GoogleDriveFileSystem(
             token="cache",
-            tokens_file=self.config["gdrive_service_account_json_file_path"],
+            token_json=self._creds,
             service_account=self.config["gdrive_use_service_account"],
         )
 
