@@ -5,7 +5,6 @@ from functools import partialmethod
 from urllib.parse import urlparse
 
 import pytest
-import shortuuid
 from dvc.fs import GDriveFileSystem
 from dvc.testing.cloud import Cloud
 from dvc.testing.path_info import CloudURLInfo
@@ -62,22 +61,16 @@ def _gdrive_retry(func):
 class GDrive(Cloud, GDriveURLInfo):
     @property
     def config(self):
-        tmp_path = "." + shortuuid.uuid() + ".tmp"
-        with open(tmp_path, "w", encoding="utf-8") as stream:
-            raw_credentials = os.getenv(
-                GDriveFileSystem.GDRIVE_CREDENTIALS_DATA
-            )
-            try:
-                credentials = json.loads(raw_credentials)
-            except ValueError:
-                credentials = {}
+        raw_credentials = os.getenv(GDriveFileSystem.GDRIVE_CREDENTIALS_DATA)
+        try:
+            credentials = json.loads(raw_credentials)
+        except ValueError:
+            credentials = {}
 
-            use_service_account = credentials.get("type") == "service_account"
-            stream.write(raw_credentials)
+        use_service_account = credentials.get("type") == "service_account"
 
         return {
             "url": self.url,
-            "gdrive_service_account_json_file_path": tmp_path,
             "gdrive_use_service_account": use_service_account,
         }
 
