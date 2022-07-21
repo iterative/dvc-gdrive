@@ -7,6 +7,7 @@ from .cloud import GDrive
 def make_gdrive():
     def _make_gdrive():
         ret = GDrive(GDrive.get_url())
+        ret.mkdir(ret.url)
         return ret
 
     return _make_gdrive
