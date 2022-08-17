@@ -2,10 +2,9 @@ import logging
 import os
 import threading
 
-from funcy import cached_property, wrap_prop
-
 from dvc_objects.fs.base import FileSystem
 from dvc_objects.fs.errors import ConfigError
+from funcy import cached_property, wrap_prop
 
 logger = logging.getLogger(__name__)
 FOLDER_MIME_TYPE = "application/vnd.google-apps.folder"
