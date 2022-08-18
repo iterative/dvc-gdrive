@@ -5,10 +5,11 @@ from functools import partialmethod
 from urllib.parse import urlparse
 
 import pytest
-from dvc.fs import GDriveFileSystem
 from dvc.testing.cloud import Cloud
 from dvc.testing.path_info import CloudURLInfo
 from funcy import cached_property, retry
+
+from dvc_gdrive import GDriveFileSystem
 
 
 class GDriveURLInfo(CloudURLInfo):
