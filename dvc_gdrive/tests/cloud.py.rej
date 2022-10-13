@@ -1,0 +1,9 @@
+diff a/dvc_gdrive/tests/cloud.py b/dvc_gdrive/tests/cloud.py	(rejected hunks)
+@@ -1,6 +1,7 @@
+ from dvc.testing.cloud import Cloud
+ from dvc.testing.path_info import CloudURLInfo
+ 
++
+ class GDRIVE(Cloud, CloudURLInfo):
+     @property
+     def config(self):

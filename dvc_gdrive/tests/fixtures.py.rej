@@ -1,0 +1,6 @@
+diff a/dvc_gdrive/tests/fixtures.py b/dvc_gdrive/tests/fixtures.py	(rejected hunks)
+@@ -19,4 +19,3 @@ def make_gdrive():
+ @pytest.fixture
+ def gdrive(make_gdrive):
+     return make_gdrive()
+-
