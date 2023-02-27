@@ -14,5 +14,5 @@ def make_gdrive():
 
 
 @pytest.fixture
-def gdrive(make_gdrive):
+def gdrive(make_gdrive):  # pylint: disable=redefined-outer-name
     return make_gdrive()
