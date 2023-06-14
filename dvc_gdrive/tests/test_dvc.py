@@ -29,12 +29,6 @@ def workspace(make_workspace):
 class TestImport(_TestImport):
     pass
 
-
-@pytest.mark.xfail
-class TestAdd(_TestAdd):
-    pass
-
-
 @pytest.mark.xfail
 class TestLsUrl(_TestLsUrl):
     pass
