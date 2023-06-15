@@ -5,7 +5,6 @@ from dvc.testing.api_tests import (  # noqa, pylint: disable=unused-import
 from dvc.testing.remote_tests import (  # noqa, pylint: disable=unused-import
     TestRemote,
 )
-from dvc.testing.workspace_tests import TestAdd as _TestAdd
 from dvc.testing.workspace_tests import TestGetUrl as _TestGetUrl
 from dvc.testing.workspace_tests import TestImport as _TestImport
 from dvc.testing.workspace_tests import TestLsUrl as _TestLsUrl
@@ -28,11 +27,6 @@ def workspace(make_workspace):
 
 @pytest.mark.xfail
 class TestImport(_TestImport):
-    pass
-
-
-@pytest.mark.xfail
-class TestAdd(_TestAdd):
     pass
 
 
