@@ -45,7 +45,7 @@ jobs:
 
     - name: install temporary dependencies
       run: |
-        pip install git+https://github.com/iterative/PyDrive2@dvc-issue-9607
+        pip install git+https://github.com/iterative/PyDrive2@remove-find
         pip install git+https://github.com/efiop/gdrivefs@service-account
         pip install git+https://github.com/isidentical/pydata-google-auth@service-account
 
