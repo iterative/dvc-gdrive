@@ -103,6 +103,12 @@ class GDrive(Cloud, GDriveURLInfo):
     def exists(self):
         raise NotImplementedError
 
+    def unlink(self, missing_ok: bool = False) -> None:
+        raise NotImplementedError
+
+    def rmdir(self, recursive: bool = True) -> None:
+        raise NotImplementedError
+
     @_gdrive_retry
     def mkdir(self, mode=0o777, parents=False, exist_ok=False):
         try:
