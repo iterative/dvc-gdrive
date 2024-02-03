@@ -5,10 +5,10 @@ from functools import partialmethod
 from urllib.parse import urlparse
 
 import pytest
-from dvc.testing.cloud import Cloud
-from dvc.testing.path_info import CloudURLInfo
 from funcy import cached_property, retry
 
+from dvc.testing.cloud import Cloud
+from dvc.testing.path_info import CloudURLInfo
 from dvc_gdrive import GDriveFileSystem
 
 
@@ -41,9 +41,7 @@ def _gdrive_retry(func):
 
         if exc.resp.status == 403:
             try:
-                reason = json.loads(exc.content)["error"]["errors"][0][
-                    "reason"
-                ]
+                reason = json.loads(exc.content)["error"]["errors"][0]["reason"]
             except (ValueError, LookupError):
                 return False
 
@@ -74,7 +72,7 @@ class GDrive(Cloud, GDriveURLInfo):
 
     @staticmethod
     def _get_storagepath():
-        return f"root/dvc-test/{str(uuid.uuid4())}"
+        return f"root/dvc-test/{uuid.uuid4()!s}"
 
     @staticmethod
     def get_url():
