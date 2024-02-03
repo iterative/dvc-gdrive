@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 import pytest
 from pydrive2.fs.spec import GDriveAuthError
 
@@ -9,7 +11,7 @@ USER_CREDS_MISSED_KEY_ERROR = "{}"
 
 
 class TestRemoteGDrive:
-    CONFIG = {
+    CONFIG: ClassVar[dict[str, str]] = {
         "url": "gdrive://root/data",
         "gdrive_client_id": "client",
         "gdrive_client_secret": "secret",
