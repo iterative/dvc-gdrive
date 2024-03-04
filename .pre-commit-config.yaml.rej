@@ -1,8 +1,0 @@
-diff a/.pre-commit-config.yaml b/.pre-commit-config.yaml	(rejected hunks)
-@@ -1,5 +1,5 @@
- ci:
--  skip: [mypy, pylint]
-+  skip: [mypy]
- 
- repos:
-   - hooks:
