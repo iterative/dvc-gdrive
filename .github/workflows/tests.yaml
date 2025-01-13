@@ -43,11 +43,6 @@ jobs:
     - name: install
       run: uv pip install -e ".[dev]" "dvc[testing] @ git+https://github.com/iterative/dvc" --system
 
-    - name: install temporary dependencies
-      run: |
-        uv pip install git+https://github.com/efiop/gdrivefs@service-account --system
-        uv pip install git+https://github.com/efiop/pydata-google-auth@service-account --system
-
     - name: lint
       timeout-minutes: 10
       uses: pre-commit/action@v3.0.1

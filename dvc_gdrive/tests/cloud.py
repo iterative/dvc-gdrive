@@ -4,7 +4,6 @@ import uuid
 from functools import partialmethod
 from urllib.parse import urlparse
 
-import pytest
 from funcy import cached_property, retry
 
 from dvc.testing.cloud import Cloud
@@ -81,14 +80,11 @@ class GDrive(Cloud, GDriveURLInfo):
 
     @cached_property
     def client(self):
-        try:
-            from gdrivefs import GoogleDriveFileSystem
-        except ImportError:
-            pytest.skip("gdrivefs is not installed")
+        from pydrive2.fs import GDriveFileSystem
 
-        return GoogleDriveFileSystem(
-            token="cache",
-            token_json=self._creds,
+        return GDriveFileSystem(
+            self.bucket,
+            client_json=self._creds,
             service_account=self.config["gdrive_use_service_account"],
         )
 
