@@ -1,0 +1,10 @@
+diff a/pyproject.toml b/pyproject.toml	(rejected hunks)
+@@ -34,7 +34,7 @@ dependencies = [
+ [project.optional-dependencies]
+ dev = [
+     "dvc-gdrive[tests]",
+-    "mypy==1.8.0",
++    "mypy==1.15.0",
+ ]
+ tests = [
+     "dvc[testing]",

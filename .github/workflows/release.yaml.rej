@@ -1,0 +1,10 @@
+diff a/.github/workflows/release.yaml b/.github/workflows/release.yaml	(rejected hunks)
+@@ -21,7 +21,7 @@ jobs:
+     - uses: actions/setup-python@v5
+       with:
+         python-version: 3.13
+-    - uses: astral-sh/setup-uv@v3
++    - uses: astral-sh/setup-uv@v6
+     - run: uv pip install twine --system
+     - run: uv build
+     - run: twine check dist/*
